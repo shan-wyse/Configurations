@@ -53,3 +53,18 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin:/Users/krishanwyse/.rvm/gems/ruby-1.9.3-p448/bin:/Users/krishanwyse/.rvm/gems/ruby-1.9.3-p448@global/bin:/Users/krishanwyse/.rvm/rubies/ruby-1.9.3-p448/bin:/Users/krishanwyse/.rvm/bin:/Users/krishanwyse/.rvm/bin
 
 alias lua='nocorrect lua'
+
+alias ls='ls'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias vimd='vim -u ~/.vim/essential.vim'
+
+source $HOME/.rvm/scripts/rvm
+export RI="--format ansi --width 70"
