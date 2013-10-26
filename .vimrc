@@ -4,16 +4,16 @@
 "   [email]@gmail.com
 "
 " Version:
-"   1.0 - 20/10/13 14:39
+"   1.0 - 21/10/13 13:05
 "
 " Sections:
 "   -> General
-"   -> UI
-"   -> UI - Colors
+"   -> User Interface
+"   -> Colors/Fonts
 "   -> File Operations
-"   -> Movement Operations
+"   -> Formatting
+"   -> Plugins
 "   -> Mappings
-"   -> Misc.
 "   -> Helper Functions
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -25,7 +25,7 @@
 " Enable incompatibility mode with vi
 set nocompatible
 
-" Set how many lines of history to remeber
+" Set how many lines of history to remember
 set history=700
 
 " Enable filetype plugins
@@ -35,15 +35,9 @@ filetype indent on
 " Enable automatic reading of files when changed externally
 set autoread
 
-" Enable Pathogen
-execute pathogen#infect()
-
-" Enable git commit formating
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -> UI
+" -> User Interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Always show current cursor position
 set ruler
@@ -54,13 +48,6 @@ set number
 " Set the height of the command bar
 set cmdheight=2
 
-" Ignore compiled and copy files
-set wildignore=*.o,*~
-
-" Configure Backspace to work correctly
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,1
-
 " Ignore case will searching, except when using capitals
 set ignorecase
 set smartcase
@@ -68,7 +55,7 @@ set smartcase
 " Highlight search results
 set hlsearch
 
-" Improve search
+" Enable instant search upon inputing a string
 set incsearch
 
 " Turn magic on for regular expressions
@@ -88,7 +75,7 @@ set tm=500
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -> UI - Colors
+" -> Colors/Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
@@ -112,7 +99,7 @@ set fenc=utf-8
 set termencoding=utf-8
 
 " Set standard file format
-set ffs=unix,dos
+set ffs=unix
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,9 +110,12 @@ set nobackup
 set nowb
 set noswapfile
 
+" Ignore compiled and copy files
+set wildignore=*.o,*~
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -> Movement Operations
+" -> Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
@@ -146,10 +136,36 @@ set smartindent
 " Enable word wrap
 set wrap
 
+" Set all numerals to be treated as decimals
+set nrformats=
+
+" Remove trailing whitespaces on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Configure Backspace to work correctly
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,1
+
+" Enable git commit formating
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Enable text file editing
+autocmd BufRead,BufNewFile *.txt set filetype=text
+autocmd Filetype text set textwidth=72 spell
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -> Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable Pathogen
+execute pathogen#infect()
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -> Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add '%%' to expand to the path of the active buffer for Ex commands
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

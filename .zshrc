@@ -66,5 +66,7 @@ alias .....='cd ../../../..'
 
 alias vimd='vim -u ~/.vim/essential.vim'
 
+alias ruby='ruby -w'
+
 source $HOME/.rvm/scripts/rvm
 export RI="--format ansi --width 70"
